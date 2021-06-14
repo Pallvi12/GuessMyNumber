@@ -4,8 +4,8 @@ let high = Number(document.querySelector('.highscore1').textContent);
 let secretnum = Math.trunc(Math.random()*20)+1;
 /*creating score*/
 let score=20;
-/*implenting logic on click button*/
-document.querySelector('.check').addEventListener('click', function(){
+/*game logic*/
+const event1 = function(){
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess, typeof guess)
   if(score>0){
@@ -38,8 +38,18 @@ document.querySelector('.check').addEventListener('click', function(){
     document.querySelector('.last').style.backgroundColor = 'black';
     document.querySelector('.message').textContent = 'Sorry! you lost the game ';
   }
-});
+}
+//action of enter key
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){
+      event1();
+  }
 
+})
+
+/*adding action to click button*/
+document.querySelector('.check').addEventListener('click', event1);
+//restoring intial conditions to again button
 document.querySelector('.again').addEventListener('click',function(){
   score=20;
   secretnum = Math.trunc(Math.random()*20)+1;
